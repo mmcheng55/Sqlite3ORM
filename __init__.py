@@ -101,7 +101,7 @@ class Database:
 
     def fetch_data(self, table: Table, **args):
         """
-        Fetch data with filter on.
+        Fetch data with filter on.n
         :param table: Table to be executed on.
         :param args: Conditions / Filters.
         :return: A list containing the data which match the conditions or filter
