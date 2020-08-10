@@ -4,15 +4,15 @@ from .__init__ import Database
 class Table:
     __slots__ = ["db", "name", "types_"]
 
-    def __init__(self, db: Database, name, **args):
+    def __init__(self, db: Database, n, **args):
         """
         Table Object
         :param db: Database
-        :param name: Table Name
+        :param n: Table Name
         :param args: Table Objects.
         """
         self.db = db
-        self.name = name
+        self.name = n
 
         self.types_ = args
 
