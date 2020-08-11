@@ -7,19 +7,19 @@ class Database:
 
     def __init__(self, name: str):
         """
-        Connect to a database
+        Connect to a db
         :param name: Database root or filename.
         """
-        self.database = sqlite3.connect(name)
+        self.database = sqlite3.connect(name, check_same_thread=False)
         self.c = self.database.cursor()
-        self.save = self.database.commit()
+        self.save = self.database.commit
         self.strings = ["CHARACTER", "VARCHAR", "VARYING CHARACTER", "NCHAR", "NATIVE CHARACTER", "NVARCHAR", "TEXT", "CLOB"]
         self.ints = ["INT", "INTEGER", "TINYINT", "SMALLINT", "MEDIUMINT", "BIGINT", "UNSIGNED BIG INT", "INT2", "INT8"]
         self.real = ["REAL", "DOUBLE", "DOUBLE PRECISION", "FLOAT"]
         self.numeric = ["NUMERIC", "DECIMAL", "BOOLEAN", "DATE", "DATETIME"]
 
-    def __enter__(self, name:str):
-        self.__init__(name)
+    def __enter__(self):
+        return self
 
     def __exit__(self, exc_t, exc_v, trace):
         self.save()
@@ -44,7 +44,7 @@ class Database:
 
         for k, v in args.items():
             i.append(f"{k} {v}")
-        self.c.execute(f"CREATE TABLE IF NOT EXISTS {table.name} (%s)" % ",".join(i))
+        self.c.execute(f"CREATE TABLE IF NOT EXISTS {table.name} (%s)" % " ".join(i))
 
     def delete_table(self, table: Table):
         """
@@ -57,7 +57,7 @@ class Database:
 
     def add_record(self, table: Table, **args):
         """
-        Add a record to the database
+        Add a record to the db
         :param table: Database to be added.
         :param args: Records
         :return: None
@@ -106,7 +106,7 @@ class Database:
         :param args: Conditions / Filters.
         :return: A list containing the data which match the conditions or filter
         """
-        self.CheckArgs(table, args)
+        # self.CheckArgs(table, args)
 
         r = []
         for k, v in args.items():
