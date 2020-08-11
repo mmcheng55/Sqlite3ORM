@@ -39,7 +39,7 @@ class Database:
         """
         for v in args.values():
             if v not in ["NULL", *self.ints, *self.real, *self.strings, *self.numeric]:
-                raise errors.TypeNotFoundException("Expected type {} but {} was found".format(["NULL", "INTEGER", "REAL", "TEXT", "BLOB"], v))
+                raise errors.TypeNotFoundException("Expected type {} but {} was found".format(["NULL", *self.ints, *self.real, *self.strings, *self.numeric], v))
         i = []
 
         for k, v in args.items():
